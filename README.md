@@ -16,11 +16,11 @@ This project is a fully functional e-commerce website designed to provide users 
 ---
 
 ## Team Members
-1. [Member 1 Name] - Backend Development  
-2. [Member 2 Name] - Frontend Development  
-3. [Member 3 Name] - Database Design and Management  
-4. [Member 4 Name] - UI/UX Design  
-5. [Member 5 Name] - Testing and Deployment  
+1. [Saurabh Shirbhate] 
+2. [Tejas Koshti]  
+3. [Prashant Kumar]   
+4. [Prashant Kumar]
+5. [Siddhesh Darade] 
 
 ---
 
@@ -35,7 +35,7 @@ This project is a fully functional e-commerce website designed to provide users 
 - **Node.js** with **Express.js**
 
 ### Database
-- **MongoDB**
+- **MySQL**
 
 ### Other Tools and Libraries
 - **JWT** for Authentication
