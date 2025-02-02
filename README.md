@@ -136,14 +136,3 @@ For any queries, reach out via:
 ---
 🚀 **Let's build the best rental marketplace together!** 🔥
 
-
----
-
-## Team Members
-1. [Saurabh Shirbhate] 
-2. [Tejas Koshti]  
-3. [Prashant Kumar]   
-4. [Prashant Kumar]
-5. [Siddhesh Darade] 
-
----
