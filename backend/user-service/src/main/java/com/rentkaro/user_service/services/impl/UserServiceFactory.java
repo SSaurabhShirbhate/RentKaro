@@ -5,6 +5,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.rentkaro.user_service.Repository.UserRepository;
@@ -13,7 +16,7 @@ import com.rentkaro.user_service.exceptions.ResourceNotFoundException;
 import com.rentkaro.user_service.services.UserService;
 
 @Service
-public class UserServiceFactory implements UserService{
+public class UserServiceFactory implements UserDetailsService, UserService{
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -85,6 +88,16 @@ public class UserServiceFactory implements UserService{
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		User user = userRepository.findByEmail(username).orElseThrow(() -> new ResourceNotFoundException(username));
+		
+		CustomUserDetails customUserDetail = new CustomUserDetails(user);
+		
+		return customUserDetail;
 	}
 
 }

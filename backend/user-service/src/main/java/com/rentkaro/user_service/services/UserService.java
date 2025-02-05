@@ -2,6 +2,8 @@ package com.rentkaro.user_service.services;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.rentkaro.user_service.entities.User;
 
 public interface UserService {
@@ -15,5 +17,7 @@ public interface UserService {
 	User deleteUser(String userId);
 	
 	User updateUser(String userId, User updatedUserDetails);
+
+	UserDetails loadUserByUsername(String usernameFromToken);
 	
 }
