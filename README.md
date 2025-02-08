@@ -53,28 +53,123 @@
  ┗ 📜 package.json
 ```
 
-## 🔗 Database Schema (MySQL & MongoDB)
-### **MySQL Tables:**
-- `users (id, name, email, password, role, created_at)`
-- `rental_items (id, title, description, owner_id, price_per_hour, price_per_day, is_available, created_at)`
-- `negotiations (id, rental_item_id, buyer_id, seller_id, negotiated_price, status, created_at)`
-- `bookings (id, rental_item_id, buyer_id, seller_id, start_date, end_date, total_amount, status, created_at)`
-- `payments (id, booking_id, transaction_id, amount, status, created_at)`
-- `reviews (id, rental_item_id, user_id, rating, comment, created_at)`
+# Everything on Rent - Database Schema
 
-### **MongoDB Collection (For Real-time Chat & Negotiations)**
-```json
-{
-  "rental_item_id": 123,
-  "buyer_id": 10,
-  "seller_id": 20,
-  "messages": [
-    { "sender_id": 10, "message": "Can you reduce the price?", "timestamp": "2025-01-24T14:30:00Z" },
-    { "sender_id": 20, "message": "I can give you a discount for weekly rental.", "timestamp": "2025-01-24T14:31:00Z" }
-  ]
-}
+## 1. Users Table (For Buyers)
+Stores details of users who are **buyers**.
+```sql
+id (Primary Key)
+name
+email (Unique)
+password
+created_at
 ```
 
+## 2. Sellers Table
+Stores details of **sellers** separately.
+```sql
+id (Primary Key)
+name
+email (Unique)
+password
+created_at
+```
+
+## 3. Admins Table
+Stores details of **admins** separately.
+```sql
+id (Primary Key)
+name
+email (Unique)
+password
+created_at
+```
+
+## 4. Rental Items Table
+Stores all items available for rent.
+```sql
+id (Primary Key)
+title
+description
+seller_id (Foreign Key → Sellers.id)
+price_per_hour
+price_per_day
+is_available (Boolean)
+created_at
+```
+
+## 5. Bookings Table
+Stores details of bookings.
+```sql
+id (Primary Key)
+rental_item_id (Foreign Key → Rental_Items.id)
+buyer_id (Foreign Key → Users.id)
+seller_id (Foreign Key → Sellers.id)
+start_date
+end_date
+total_amount
+status (Enum: Pending, Confirmed, Cancelled, Completed)
+created_at
+```
+
+## 6. Payments Table
+Stores payment details.
+```sql
+id (Primary Key)
+booking_id (Foreign Key → Bookings.id)
+transaction_id (Unique)
+amount
+status (Enum: Success, Failed, Pending)
+created_at
+```
+
+## 🔹 Relationships
+1. **Users → Bookings** → A buyer can make multiple bookings.
+2. **Sellers → Rental Items** → A seller can list multiple rental items.
+3. **Bookings → Payments** → Each booking has one payment.
+
+## 🔹 ER Diagram Representation
+```
++----------------+       +-----------------+       +-----------------+
+|    Users      |       |  Rental Items   |       |  Sellers        |
++----------------+       +-----------------+       +-----------------+
+| id (PK)       |<------| seller_id (FK)  |<------| id (PK)         |
+| name          |       | id (PK)         |       | name            |
+| email         |       | title           |       | email           |
+| password      |       | description     |       | password        |
+| created_at    |       | price_per_hour  |       | created_at      |
++----------------+       | price_per_day   |       +-----------------+
+                         | is_available    |
+                         | created_at      |
+                         +-----------------+
+                                |
+                                v
+                         +-----------------+       +-----------------+
+                         |    Bookings     |       |    Payments     |
+                         +-----------------+       +-----------------+
+                         | id (PK)         |<------| booking_id (FK) |
+                         | rental_item_id  |       | id (PK)         |
+                         | buyer_id (FK)   |       | transaction_id  |
+                         | seller_id (FK)  |       | amount          |
+                         | start_date      |       | status          |
+                         | end_date        |       | created_at      |
+                         | total_amount    |       +-----------------+
+                         | status          |
+                         | created_at      |
+                         +-----------------+
+
+                         +-----------------+
+                         |    Admins       |
+                         +-----------------+
+                         | id (PK)         |
+                         | name            |
+                         | email           |
+                         | password        |
+                         | created_at      |
+                         +-----------------+
+
+
+```
 ## ⚙️ Installation & Setup
 ### **1️⃣ Backend Setup**
 ```bash
