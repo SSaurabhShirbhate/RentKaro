@@ -8,15 +8,14 @@
 ✅ Listing of Rental Items (Cars, Furniture, Gadgets, etc.)  
 ✅ Price Negotiation between Buyer & Seller (OLX-style chat)  
 ✅ Booking System for Renting Items  
-✅ Secure Payments (UPI, PayPal, Credit/Debit Card)  
-✅ Ratings & Reviews for Sellers and Rental Items  
+✅ Secure Payments   
 ✅ Admin Dashboard for Managing Users and Listings  
 
 ## 🛠️ Tech Stack
 ### **Frontend:**
 - React.js / Next.js (Dynamic UI)
 - TailwindCSS / Material-UI (UI Components)
-- Redux Toolkit (State Management)
+- Context API (State Management)
 - WebSockets (Real-time Negotiation Chat)
 
 ### **Backend:**
