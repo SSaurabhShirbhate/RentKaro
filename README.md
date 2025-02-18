@@ -43,7 +43,6 @@
  ┃ ┣ 📂 src
  ┃ ┣ 📂 components
  ┃ ┣ 📂 pages
- ┃ ┣ 📂 redux
  ┃ ┗ 📂 assets
  ┣ 📜 docker-compose.yml
  ┣ 📜 README.md
