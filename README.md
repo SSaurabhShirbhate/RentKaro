@@ -22,7 +22,6 @@
 - Spring Boot (Microservices Architecture)
 - Spring Security + JWT (Authentication & Authorization)
 - MySQL (Relational Database for structured data)
-- MongoDB (For storing real-time chat data)
 - RESTful APIs (Communication between services)
 
 ### **DevOps & Deployment:**
