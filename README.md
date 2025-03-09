@@ -13,42 +13,17 @@
 
 ## 🛠️ Tech Stack
 ### **Frontend:**
-- React.js / Next.js (Dynamic UI)
+- React.js 
 - TailwindCSS / Material-UI (UI Components)
 - Context API (State Management)
 - WebSockets (Real-time Negotiation Chat)
 
 ### **Backend:**
-- Spring Boot (Microservices Architecture)
+- Spring Boot
 - Spring Security + JWT (Authentication & Authorization)
 - MySQL (Relational Database for structured data)
 - RESTful APIs (Communication between services)
 
-### **DevOps & Deployment:**
-- Docker (Containerization)
-- Kubernetes (Orchestration)
-- AWS / Digital Ocean (Cloud Deployment)
-- CI/CD (GitHub Actions or Jenkins)
-
-## 📂 Folder Structure
-```
-📦 everything-on-rent
- ┣ 📂 backend
- ┃ ┣ 📂 user-service
- ┃ ┣ 📂 rental-service
- ┃ ┣ 📂 negotiation-service
- ┃ ┣ 📂 payment-service
- ┃ ┗ 📂 review-service
- ┣ 📂 frontend
- ┃ ┣ 📂 src
- ┃ ┣ 📂 components
- ┃ ┣ 📂 pages
- ┃ ┗ 📂 assets
- ┣ 📜 docker-compose.yml
- ┣ 📜 README.md
- ┣ 📜 .gitignore
- ┗ 📜 package.json
-```
 
 # Everything on Rent - Database Schema
 
@@ -125,48 +100,6 @@ created_at
 2. **Sellers → Rental Items** → A seller can list multiple rental items.
 3. **Bookings → Payments** → Each booking has one payment.
 
-## 🔹 ER Diagram Representation
-```
-+----------------+       +-----------------+       +-----------------+
-|    Users      |       |  Rental Items   |       |  Sellers        |
-+----------------+       +-----------------+       +-----------------+
-| id (PK)       |<------| seller_id (FK)  |<------| id (PK)         |
-| name          |       | id (PK)         |       | name            |
-| email         |       | title           |       | email           |
-| password      |       | description     |       | password        |
-| created_at    |       | price_per_hour  |       | created_at      |
-+----------------+       | price_per_day   |       +-----------------+
-                         | is_available    |
-                         | created_at      |
-                         +-----------------+
-                                |
-                                v
-                         +-----------------+       +-----------------+
-                         |    Bookings     |       |    Payments     |
-                         +-----------------+       +-----------------+
-                         | id (PK)         |<------| booking_id (FK) |
-                         | rental_item_id  |       | id (PK)         |
-                         | buyer_id (FK)   |       | transaction_id  |
-                         | seller_id (FK)  |       | amount          |
-                         | start_date      |       | status          |
-                         | end_date        |       | created_at      |
-                         | total_amount    |       +-----------------+
-                         | status          |
-                         | created_at      |
-                         +-----------------+
-
-                         +-----------------+
-                         |    Admins       |
-                         +-----------------+
-                         | id (PK)         |
-                         | name            |
-                         | email           |
-                         | password        |
-                         | created_at      |
-                         +-----------------+
-
-
-```
 ## ⚙️ Installation & Setup
 ### **1️⃣ Backend Setup**
 ```bash
