@@ -6,7 +6,6 @@
 ## 📌 Features
 ✅ User Authentication & Role-based Access (Buyer, Seller, Admin)  
 ✅ Listing of Rental Items (Cars, Furniture, Gadgets, etc.)  
-✅ Price Negotiation between Buyer & Seller (OLX-style chat)  
 ✅ Booking System for Renting Items  
 ✅ Secure Payments   
 ✅ Admin Dashboard for Managing Users and Listings  
@@ -16,7 +15,6 @@
 - React.js 
 - TailwindCSS / Material-UI (UI Components)
 - Context API (State Management)
-- WebSockets (Real-time Negotiation Chat)
 
 ### **Backend:**
 - Spring Boot
@@ -24,85 +22,6 @@
 - MySQL (Relational Database for structured data)
 - RESTful APIs (Communication between services)
 
-
-# Everything on Rent - Database Schema
-
-## 1. Users Table (For Buyers)
-Stores details of users who are **buyers**.
-```sql
-id (Primary Key)
-name
-email (Unique)
-password
-created_at
-```
-
-## 2. Sellers Table
-Stores details of **sellers** separately.
-```sql
-id (Primary Key)
-name
-email (Unique)
-password
-created_at
-```
-
-## 3. Admins Table
-Stores details of **admins** separately.
-```sql
-id (Primary Key)
-name
-email (Unique)
-password
-created_at
-```
-
-## 4. Rental Items Table
-Stores all items available for rent.
-```sql
-id (Primary Key)
-title
-description
-seller_id (Foreign Key → Sellers.id)
-price_per_hour
-price_per_day
-is_available (Boolean)
-created_at
-```
-
-## 5. Bookings Table
-Stores details of bookings.
-```sql
-id (Primary Key)
-rental_item_id (Foreign Key → Rental_Items.id)
-buyer_id (Foreign Key → Users.id)
-seller_id (Foreign Key → Sellers.id)
-start_date
-end_date
-total_amount
-status (Enum: Pending, Confirmed, Cancelled, Completed)
-created_at
-```
-
-## 6. Payments Table
-Stores payment details.
-```sql
-id (Primary Key)
-booking_id (Foreign Key → Bookings.id)
-transaction_id (Unique)
-amount
-status (Enum: Success, Failed, Pending)
-created_at
-```
-
-## 🔹 Relationships
-1. **Users → Bookings** → A buyer can make multiple bookings.
-2. **Sellers → Rental Items** → A seller can list multiple rental items.
-3. **Bookings → Payments** → Each booking has one payment.
-
-## ⚙️ Installation & Setup
-### **1️⃣ Backend Setup**
-```bash
 # Clone the repository
 git clone https://github.com/yourusername/everything-on-rent.git
 cd everything-on-rent/backend
